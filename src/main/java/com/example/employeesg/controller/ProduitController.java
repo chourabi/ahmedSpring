@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.employeesg.entitys.Employee;
 import com.example.employeesg.entitys.Produit;
 import com.example.employeesg.model.ProduitAjoutModel;
 import com.example.employeesg.repository.ProduitRepository;
+import com.example.employeesg.services.ProductService;
 
 @RestController 
 @CrossOrigin(origins = "*")
@@ -24,16 +24,16 @@ public class ProduitController {
 	
 	
 	@Autowired
-	private ProduitRepository produitRepository;
+	ProductService ps;
 	
 	@GetMapping("/list")
 
 	public List<Produit> getProduitsList(){
 		
-		return this.produitRepository.findAll();
+		return this.ps.getProduitRepository().findAll();
 	}
 		
-	@PostMapping("/add")
+	/*@PostMapping("/add")
 	private void addNewProduit( @RequestBody ProduitAjoutModel p ) {
 		Produit produit = new Produit();
 		
@@ -60,7 +60,7 @@ public class ProduitController {
 		 
 		 this.produitRepository.save(produit);
 		 
-	 }
+	 }*/
 	
 	
 	

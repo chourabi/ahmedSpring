@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -25,16 +27,24 @@ public class Produit {
 	private int  price;
 	
 	
+	@ManyToOne()
+    @JoinColumn(name = "fournisseurs_id", nullable = false)
+	private Fournisseur fournisseur;
+	
 
 
-	public int getPrice() {
-		return price;
-	}
+	
 
-
-	public void setPrice(int price) {
+	public Produit(long id, String label, int price, Fournisseur fournisseur) {
+		super();
+		this.id = id;
+		this.label = label;
 		this.price = price;
+		this.fournisseur = fournisseur;
 	}
+
+
+
 
 
 	public long getId() {
@@ -42,14 +52,23 @@ public class Produit {
 	}
 
 
+
+
+
 	public void setId(long id) {
 		this.id = id;
 	}
 
 
+
+
+
 	public String getLabel() {
 		return label;
 	}
+
+
+
 
 
 	public void setLabel(String label) {
@@ -58,12 +77,38 @@ public class Produit {
 
 
 
-	public Produit(long id, String label, int price) {
-		super();
-		this.id = id;
-		this.label = label;
+
+
+	public int getPrice() {
+		return price;
+	}
+
+
+
+
+
+	public void setPrice(int price) {
 		this.price = price;
 	}
+
+
+
+
+
+	public Fournisseur getFournisseur() {
+		return fournisseur;
+	}
+
+
+
+
+
+	public void setFournisseur(Fournisseur fournisseur) {
+		this.fournisseur = fournisseur;
+	}
+
+
+
 
 
 	public Produit() {
